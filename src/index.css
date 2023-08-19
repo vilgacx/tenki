@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  @apply font-serif;
+}
+
+body {
+  @apply bg-black;
+}
+
+main {
+  @apply h-[100vh] w-full flex flex-col text-center;
+}

@@ -1,0 +1,39 @@
+.search-main {
+  @apply bg-slate-50 text-neutral-800;
+}
+
+.search-div {
+  @apply m-auto flex flex-col space-y-4 mt-32;
+}
+
+.search-title {
+  @apply text-4xl italic mb-6;
+}
+
+.search-inn-div {
+  @apply flex rounded-3xl bg-white border focus:border-black w-[30rem];
+}
+
+.search-inn {
+  @apply text-2xl px-6 py-4 rounded-l-3xl focus:outline-none w-full;
+}
+
+.search-btn {
+  @apply font-bold text-4xl hover:bg-zinc-50 px-6 rounded-r-3xl h-full active:bg-zinc-100;
+}
+
+.city-list-div {
+  @apply bg-white p-2.5 border rounded-3xl w-[30rem];
+}
+
+.city-list {
+  @apply bg-white w-full rounded-3xl text-left divide-y text-2xl italic w-full max-h-96 overflow-auto;
+}
+
+li {
+  @apply text-center rounded-2xl text-ellipsis p-8;
+}
+
+.li-btn {
+  @apply w-full h-full rounded-2xl;
+}

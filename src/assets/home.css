@@ -1,0 +1,15 @@
+.home-main {
+  @apply -z-10 animate-gradient-xy bg-gradient-to-r;
+}
+
+.title {
+  @apply font-bold text-8xl bg-clip-text text-transparent mt-16 animate-gradient-x bg-gradient-to-r;
+}
+
+.sub-title {
+  @apply text-base font-bold italic text-neutral-300;
+}
+
+.weather-card {
+  @apply m-auto w-[80vh] h-96 rounded-xl shadow-md bg-white opacity-50;
+}

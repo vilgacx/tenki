@@ -1,0 +1,3 @@
+# tenki
+
+React + TypeScript + Vite
