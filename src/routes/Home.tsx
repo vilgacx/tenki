@@ -5,43 +5,35 @@ import BgCanvas from "../components/BgCanvas";
 import Loading from '../components/Loading';
 
 const stylelist = [
-  ['from-blue-200 to-sky-300','from-amber-950 to-stone-950'],
-  ['from-blue-300 to-sky-300','from-stone-950 to-black'],
-  [],
-  [],
-  [],
-  [],
-  ['from-black to-slate-950','from-white to-neutral-500'],
-  ['from-neutral-950 to-black', 'from-white to-neutral-400']
+  ['from-amber-50 via-sky-200 to-sky-500','from-black to-stone-600'],
+  ['from-slate-200 to-cyan-100','from-neutral-600 to-black'],
+  ['from-slate-400 via-sky-950 to-gray-950','from-neutral-800 to-white'],
+  ['from-slate-800 to-black','from-neutral-500 to-white'],
+  ['from-black to-slate-950','from-white to-neutral-400'],
+  ['from-gray-950 to-black', 'from-white to-neutral-400']
 ]
 
 
 const Weathers = (code: number) => {
   let style: Array<string> = [];
   switch (code) {
-    case 0:
+    case 0: case 1: case 2: case 3:
       style = stylelist[0];
       break;
-    case 1: case 2: case 3: 
+    case 45: case 48: case 51: case 53: case 55: case 56: case 57:
       style = stylelist[1];
       break;
-    case 45: case 48:
+    case 61: case 63: case 65: case 66: case 67:
       style = stylelist[2];
       break;
-    case 51: case 53: case 55: case 56: case 57:
+    case 71: case 73: case 75:
       style = stylelist[3];
       break;
-    case 61: case 63: case 65: case 66: case 67:
+    case 80: case 81: case 82: case 85: case 86:
       style = stylelist[4];
       break;
-    case 71: case 73: case 75:
-      style = stylelist[5];
-      break;
-    case 80: case 81: case 82: case 85: case 86:
-      style = stylelist[6];
-      break;
     case 95: case 96: case 99:
-      style = stylelist[7]
+      style = stylelist[5]
       break;
   }
   return style;
@@ -62,7 +54,7 @@ function Home() {
         .then((response) => response.json())
         .then((data) => {
           const weather_code = data.current_weather.weathercode;
-          setWeatherCode(80);
+          setWeatherCode(weather_code);
           setShow(true);
         })
     }
@@ -77,7 +69,7 @@ function Home() {
           <main className={`home-main ${Weathers(WeatherCode)[0]}`}>
             <main className="z-10 p-14">
               <p className={`title ${Weathers(WeatherCode)[1]}`}>今日の天気</p>
-              <p className="sub-title">(today's weather)</p> 
+              <p className={`sub-title ${Weathers(WeatherCode)[1]}`}>[[today's weather]]</p> 
               <div className="weather-card">
               </div>
             </main>
