@@ -1,9 +1,9 @@
 .search-main {
-  @apply bg-slate-50 text-neutral-800;
+  @apply text-neutral-800 bg-gray-50;
 }
 
 .search-div {
-  @apply m-auto flex flex-col space-y-4 mt-32;
+  @apply z-10 m-auto flex flex-col space-y-4 mt-32;
 }
 
 .search-title {

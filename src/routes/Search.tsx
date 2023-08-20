@@ -1,5 +1,5 @@
+import './css/search.css';
 import { useEffect, useRef, useState } from 'react';
-import '../assets/search.css';
 import { useNavigate } from "react-router-dom";
 
 type City = {

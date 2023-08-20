@@ -1,11 +1,11 @@
-import '../assets/home.css';
+import './css/home.css';
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import BgCanvas from "../components/BgCanvas";
 import Loading from '../components/Loading';
 
 const stylelist = [
-  ['from-amber-50 via-sky-200 to-sky-500','from-black to-stone-600'],
+  ['from-amber-50 via-sky-300 to-sky-500','from-black to-stone-600'],
   ['from-slate-200 to-cyan-100','from-neutral-600 to-black'],
   ['from-slate-400 via-sky-950 to-gray-950','from-neutral-800 to-white'],
   ['from-slate-800 to-black','from-neutral-500 to-white'],

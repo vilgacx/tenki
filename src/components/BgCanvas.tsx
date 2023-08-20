@@ -1,6 +1,5 @@
 import { useEffect, useRef } from "react";
-import './main.css';
-import CanvasEffects from "./CanvasEffects";
+import CanvasEffects from "../assets/CanvasEffects";
 
 type Weather = {
   type: number
@@ -45,7 +44,7 @@ function BgCanvas(props: Weather) {
   });
 
   return (
-    <canvas id="bg-canvas" className="bg-canvas" ref={element}></canvas>
+    <canvas id="bg-canvas" className="absolute left-0 top-0" ref={element}></canvas>
   )
 }
 
