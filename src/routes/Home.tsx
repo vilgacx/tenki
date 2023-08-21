@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import BgCanvas from "../components/BgCanvas";
 import Loading from '../components/Loading';
+import WeatherIcons from '../assets/WeatherIcons';
 
 const stylelist = [
   ['from-amber-50 via-sky-300 to-sky-500','from-black to-stone-600'],
@@ -12,7 +13,6 @@ const stylelist = [
   ['from-black to-slate-950','from-white to-neutral-400'],
   ['from-gray-950 to-black', 'from-white to-neutral-400']
 ]
-
 
 const Weathers = (code: number) => {
   let style: Array<string> = [];
@@ -40,7 +40,7 @@ const Weathers = (code: number) => {
 }
 
 function Home() {
-  const [WeatherCode, setWeatherCode] = useState(0);
+  const [WeatherData, setWeatherData] = useState<{[key: string]: number}>();
   const [Show, setShow] = useState(false);
   const navigate = useNavigate();
   const selected_city = localStorage.getItem('city');
@@ -53,8 +53,8 @@ function Home() {
       fetch(`https://api.open-meteo.com/v1/forecast?latitude=${city.lat}&longitude=${city.long}&hourly=temperature_2m,precipitation_probability,windspeed_10m,is_day&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max,windspeed_10m_max&current_weather=true&timezone=auto`)
         .then((response) => response.json())
         .then((data) => {
-          const weather_code = data.current_weather.weathercode;
-          setWeatherCode(weather_code);
+          const weather_data = data.current_weather;
+          setWeatherData(weather_data);
           setShow(true);
         })
     }
@@ -65,13 +65,14 @@ function Home() {
       {!Show && <Loading />}
       {Show &&
         <>
-          <BgCanvas type={WeatherCode} />
-          <main className={`home-main ${Weathers(WeatherCode)[0]}`}>
+          <BgCanvas type={WeatherData!.weathercode} />
+          <main className={`home-main ${Weathers(WeatherData!.weathercode)[0]}`}>
             <main className="z-10 p-14">
-              <p className={`title ${Weathers(WeatherCode)[1]}`}>今日の天気</p>
-              <p className={`sub-title ${Weathers(WeatherCode)[1]}`}>[[today's weather]]</p> 
+              <p className={`title ${Weathers(WeatherData!.weathercode)[1]}`}>今日の天気</p>
+              <p className={`sub-title ${Weathers(WeatherData!.weathercode)[1]}`}>[[today's weather]]</p> 
               <div className="weather-card">
-              </div>
+                <img src={WeatherIcons[WeatherData!.weathercode][WeatherData!.is_day]["image"]} alt=""/>
+              </div> 
             </main>
           </main>
         </>
