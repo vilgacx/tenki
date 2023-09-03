@@ -7,9 +7,9 @@ export default {
   theme: {
     extend: {
       'animation': {
-        'gradient-x':'gradient-x 15s ease infinite',
-        'gradient-y':'gradient-y 15s ease infinite',
-        'gradient-xy':'gradient-xy 15s ease infinite',
+        'gradient-x':'gradient-x 30s ease infinite',
+        'gradient-y':'gradient-y 30s ease infinite',
+        'gradient-xy':'gradient-xy 30s ease infinite',
       },
       'keyframes': {
         'gradient-y': {

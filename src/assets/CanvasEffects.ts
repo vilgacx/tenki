@@ -73,7 +73,6 @@ export default class CanvasEffects {
     const ctx = this.ctx;
     const w = this.w;
     const h = this.h;
-
     const bg = new Image();
     bg.src = "/bgcloud.png";
     bg.height = h;

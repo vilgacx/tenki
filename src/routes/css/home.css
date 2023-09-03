@@ -1,5 +1,5 @@
 .home-main {
-  @apply -z-10 animate-gradient-xy bg-gradient-to-r;
+  @apply -z-10 animate-gradient-xy bg-gradient-to-r w-full;
 }
 
 .title-common {
@@ -7,13 +7,61 @@
 }
 
 .title {
-  @apply font-bold text-8xl mt-10 title-common;
+  @apply font-serif font-bold hidden md:block md:text-8xl title-common;
 }
 
 .sub-title {
   @apply text-base font-bold title-common;
 }
 
-.weather-card {
-  @apply m-auto w-[80vh] h-96 rounded-xl shadow-lg bg-white bg-opacity-40;
+.weather-div {
+  @apply flex m-auto font-mono;
+}
+
+.card-commons {
+  @apply rounded-xl shadow-md;
+}
+
+.c-weather-card {
+  @apply card-commons bg-white bg-opacity-10 md:w-fit w-full h-fit flex space-x-5;
+}
+
+.c-weather-logo {
+  @apply rounded-l-xl rounded-r-sm bg-white bg-opacity-40;
+}
+
+.c-temp {
+  @apply w-full m-auto text-4xl text-center pr-6;
+}
+
+.w-graph-div {
+  @apply space-y-4 hidden md:block;
+}
+
+.weather-graph-div {
+  @apply h-[40vh] bg-white bg-opacity-10 card-commons;
+}
+
+.weather-graph-legend-div {
+  @apply flex w-fit p-2 md:p-4 text-xs card-commons bg-white bg-opacity-10 space-x-5;
+}
+
+.legend-box {
+  @apply px-1 rounded-full;
+}
+
+.d-weather-card {
+  @apply grid grid-flow-row grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 w-fit justify-items-center gap-8;
+}
+
+.d-div {
+  @apply flex flex-col space-y-5 p-4 card-commons bg-white bg-opacity-10;
+}
+
+.d-img-div {
+  @apply px-4 card-commons bg-white bg-opacity-40 hover:bg-opacity-50 active:bg-opacity-10;
+}
+
+.d-data-div {
+  @apply m-auto text-left text-sm xl:text-xs 2xl:text-sm;
 }

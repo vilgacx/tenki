@@ -2,14 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-  @apply font-serif;
-}
-
 body {
-  @apply bg-black;
+  @apply bg-black font-serif;
 }
 
 main {
-  @apply h-[100vh] w-full flex flex-col text-center;
+  @apply w-full flex flex-col text-center;
 }

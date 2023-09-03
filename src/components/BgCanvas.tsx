@@ -2,7 +2,8 @@ import { useEffect, useRef } from "react";
 import CanvasEffects from "../assets/CanvasEffects";
 
 type Weather = {
-  type: number
+  type: number,
+  is_day: number
 }
 
 function BgCanvas(props: Weather) {
@@ -22,7 +23,7 @@ function BgCanvas(props: Weather) {
 
       switch (props.type) {
         case 1: case 2: case 3:
-          Effects.CloudEffect();
+          props.is_day === 1 ? Effects.CloudEffect() : 0;
           break;
         case 61: case 66:
           Effects.RainEffect(4, 2, 500);
