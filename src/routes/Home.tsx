@@ -1,6 +1,6 @@
 import './css/home.css';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import BgCanvas from '../components/BgCanvas';
 import Loading from '../components/Loading';
 import WeatherIcons from '../assets/WeatherIcons';
@@ -63,7 +63,11 @@ function Home() {
   const [DWeatherData, setDWeatherData] = useState<{[key: string]: {[key: number]: number}}>();
   const [HWeatherData, setHWeatherData] = useState<HourlyData[]>(); 
   const [Show, setShow] = useState(false);
-  const [Day,setDay] = useState(0);
+  const [Day, setDay] = useState(0);
+  
+  const cdate = new Date();
+  const [GraphDate, setGraphDate] = useState(`${cdate.getFullYear()}/${("0"+cdate.getMonth()).slice(-2)}/${("0"+cdate.getDate()).slice(-2)}`);
+  
   const navigate = useNavigate();
   const selected_city = localStorage.getItem('city');
 
@@ -107,6 +111,7 @@ function Home() {
         <>
           <BgCanvas type={CWeatherData!.weathercode} is_day={CWeatherData!.is_day} />
           <main className={`home-main ${Weathers(CWeatherData!.weathercode, CWeatherData!.is_day)[0]}`}>
+            <Link to="/search" className='search-link'>🔍</Link>
             <main className="z-10 py-10 px-6"> 
               <div className={`weather-div ${Weathers(CWeatherData!.weathercode, CWeatherData!.is_day)[2]}`}>
                 <div className='space-y-8'>
@@ -122,10 +127,13 @@ function Home() {
                     </div>
                   </div>
                   <div className='w-graph-div'>
-                    <div className='weather-graph-legend-div'>
-                      <p><span className='legend-box bg-red-500'>&nbsp;</span> temperature</p>
-                      <p><span className='legend-box bg-blue-500'>&nbsp;</span> precipitation</p>
-                      <p><span className='legend-box bg-gray-500'>&nbsp;</span> wind speed</p>
+                    <div className='flex justify-between'> 
+                      <div className='weather-graph-legend-div'>
+                        <p><span className='legend-box bg-red-500'>&nbsp;</span> temperature</p>
+                        <p><span className='legend-box bg-blue-500'>&nbsp;</span> precipitation</p>
+                        <p><span className='legend-box bg-gray-500'>&nbsp;</span> wind speed</p>
+                      </div>
+                      <p className='w-graph-date'>{GraphDate}</p>
                     </div>
                     <div className='weather-graph-div'> 
                       <WeatherGraph data={HWeatherData!} />
@@ -133,8 +141,9 @@ function Home() {
                   </div>
                   <div className='d-weather-card'>
                     {[...Array(7).keys()].map((val) => {
+                      const date = (DWeatherData!['time'][val]).toString().replace(/-/g,'/');
                       return <div className='d-div' key={val}>
-                        <button className='d-img-div' onClick={() => {setDay(val)}}>
+                        <button className='d-img-div' onClick={() => {setDay(val); setGraphDate(date)}}>
                           <img src={WeatherIcons[DWeatherData!['weathercode'][val]][0]['image']} alt="weather-logo" className='m-auto'/>
                         </button>
                         <div className='d-data-div'> 
@@ -142,7 +151,7 @@ function Home() {
                           <p><b>min:</b> {DWeatherData!['temperature_2m_min'][val]}&deg;C</p>
                           <p><b>ppt:</b> {DWeatherData!['precipitation_probability_max'][val]}%</p>
                           <p><b>wind:</b> {DWeatherData!['windspeed_10m_max'][val]}km/h</p>
-                          <p><b>date:</b> {(DWeatherData!['time'][val]).toString().replace(/-/g,'/')}</p>
+                          <p><b>date:</b> {date}</p>
                         </div>
                       </div>
                     })}

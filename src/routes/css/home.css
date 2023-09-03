@@ -2,6 +2,10 @@
   @apply -z-10 animate-gradient-xy bg-gradient-to-r w-full;
 }
 
+.search-link {
+  @apply absolute left-2 top-2 z-20 text-white font-mono text-lg card-commons bg-white bg-opacity-10 px-3 py-2;
+}
+
 .title-common {
   @apply bg-clip-text text-transparent animate-gradient-x bg-gradient-to-r;
 }
@@ -43,7 +47,11 @@
 }
 
 .weather-graph-legend-div {
-  @apply flex w-fit p-2 md:p-4 text-xs card-commons bg-white bg-opacity-10 space-x-5;
+  @apply flex w-fit p-4 text-xs card-commons bg-white bg-opacity-10 space-x-5;
+}
+
+.w-graph-date {
+  @apply card-commons w-fit bg-white bg-opacity-10 text-xs font-bold p-4;
 }
 
 .legend-box {
@@ -63,5 +71,5 @@
 }
 
 .d-data-div {
-  @apply m-auto text-left text-sm xl:text-xs 2xl:text-sm;
+  @apply m-auto text-left text-xs sm:text-sm xl:text-xs 2xl:text-sm;
 }

@@ -1,5 +1,5 @@
 .search-main {
-  @apply text-neutral-800 bg-gray-50;
+  @apply text-neutral-800 bg-gray-50 h-[100vh];
 }
 
 .search-div {
