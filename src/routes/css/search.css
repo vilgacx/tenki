@@ -1,5 +1,5 @@
 .search-main {
-  @apply text-neutral-800 bg-gray-50 h-[100vh];
+  @apply text-neutral-800 bg-gray-50 h-[100vh] p-4 font-serif;
 }
 
 .search-div {
@@ -11,7 +11,7 @@
 }
 
 .search-inn-div {
-  @apply flex rounded-3xl bg-white border focus:border-black w-[30rem];
+  @apply flex rounded-3xl bg-white border focus:border-black w-full md:w-[50vh];
 }
 
 .search-inn {
@@ -23,7 +23,7 @@
 }
 
 .city-list-div {
-  @apply bg-white p-2.5 border rounded-3xl w-[30rem];
+  @apply bg-white p-2.5 border rounded-3xl w-full md:w-[50vh];
 }
 
 .city-list {

@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply bg-black font-serif;
+  @apply bg-black;
 }
 
 main {
