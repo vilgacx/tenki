@@ -80,7 +80,6 @@ function Home() {
         .then((response) => response.json())
         .then((data) => {
           const current_weather_data = data.current_weather;
-          current_weather_data.weathercode = 3;
           const daily_weather_data = data.daily;
           const hourly_weather_data = () => {
             const rawhdata = data.hourly;
