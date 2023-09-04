@@ -1,5 +1,5 @@
 import './css/home.css';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import BgCanvas from '../components/BgCanvas';
 import Loading from '../components/Loading';
