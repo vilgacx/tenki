@@ -45,7 +45,7 @@ function BgCanvas(props: Weather) {
   });
 
   return (
-    <canvas id="bg-canvas" className="absolute left-0 top-0 h-full w-full" ref={element}></canvas>
+    <canvas id="bg-canvas" className="absolute left-0 top-0 h-full w-full hidden xs:block" ref={element}></canvas>
   )
 }
 

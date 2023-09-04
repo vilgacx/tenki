@@ -103,7 +103,7 @@ function Home() {
           setShow(true);
         })
     }
-  },[Day]); 
+  },[Day]);
 
   return (
     <>
