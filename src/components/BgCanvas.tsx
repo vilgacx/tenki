@@ -3,7 +3,7 @@ import CanvasEffects from "../assets/CanvasEffects";
 
 type Weather = {
   type: number,
-  is_day: number
+  is_day: number,
 }
 
 function BgCanvas(props: Weather) {
@@ -45,7 +45,7 @@ function BgCanvas(props: Weather) {
   });
 
   return (
-    <canvas id="bg-canvas" className="absolute left-0 top-0" ref={element}></canvas>
+    <canvas id="bg-canvas" className="absolute left-0 top-0 h-full w-full" ref={element}></canvas>
   )
 }
 

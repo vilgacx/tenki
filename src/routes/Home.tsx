@@ -1,5 +1,5 @@
 import './css/home.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import BgCanvas from '../components/BgCanvas';
 import Loading from '../components/Loading';
@@ -64,10 +64,10 @@ function Home() {
   const [HWeatherData, setHWeatherData] = useState<HourlyData[]>(); 
   const [Show, setShow] = useState(false);
   const [Day, setDay] = useState(0);
-  
+
   const cdate = new Date();
   const [GraphDate, setGraphDate] = useState(`${cdate.getFullYear()}/${("0"+cdate.getMonth()).slice(-2)}/${("0"+cdate.getDate()).slice(-2)}`);
-  
+
   const navigate = useNavigate();
   const selected_city = localStorage.getItem('city');
 
@@ -80,6 +80,7 @@ function Home() {
         .then((response) => response.json())
         .then((data) => {
           const current_weather_data = data.current_weather;
+          current_weather_data.weathercode = 3;
           const daily_weather_data = data.daily;
           const hourly_weather_data = () => {
             const rawhdata = data.hourly;
@@ -102,43 +103,43 @@ function Home() {
           setShow(true);
         })
     }
-  },[Day]);
+  },[Day]); 
 
   return (
     <>
       {!Show && <Loading />}
       {Show &&
-        <>
-          <BgCanvas type={CWeatherData!.weathercode} is_day={CWeatherData!.is_day} />
+        <> 
           <main className={`home-main ${Weathers(CWeatherData!.weathercode, CWeatherData!.is_day)[0]}`}>
+            <BgCanvas type={CWeatherData!.weathercode} is_day={CWeatherData!.is_day} />
             <Link to="/search" className='search-link'>🔍</Link>
-            <main className="z-10 py-10 px-6"> 
+            <main className="weather-card"> 
               <div className={`weather-div ${Weathers(CWeatherData!.weathercode, CWeatherData!.is_day)[2]}`}>
-                <div className='space-y-8'>
-                  <div className='flex justify-between'>
-                    <div className="c-weather-card">
-                      <img src={CWeatherIcon} alt="weather-logo" className="c-weather-logo"/>
-                      <p className='c-temp'>{CWeatherData!['temperature']}&deg;C 
-                        <p className='text-xs'>current temprature</p>
-                      </p>
-                    </div>
-                    <div>
-                      <p className={`title ${Weathers(CWeatherData!.weathercode, CWeatherData!.is_day)[1]}`}>天気</p>
-                    </div>
+                <div className='flex justify-between'>
+                  <div className="c-weather-card">
+                    <img src={CWeatherIcon} alt="weather-logo" className="c-weather-logo"/>
+                    <p className='c-temp'>{CWeatherData!['temperature']}&deg;C 
+                      <p className='text-xs'>current temprature</p>
+                    </p>
                   </div>
-                  <div className='w-graph-div'>
-                    <div className='flex justify-between'> 
-                      <div className='weather-graph-legend-div'>
-                        <p><span className='legend-box bg-red-500'>&nbsp;</span> temperature</p>
-                        <p><span className='legend-box bg-blue-500'>&nbsp;</span> precipitation</p>
-                        <p><span className='legend-box bg-gray-500'>&nbsp;</span> wind speed</p>
-                      </div>
-                      <p className='w-graph-date'>{GraphDate}</p>
-                    </div>
-                    <div className='weather-graph-div'> 
-                      <WeatherGraph data={HWeatherData!} />
-                    </div>
+                  <div>
+                    <p className={`title ${Weathers(CWeatherData!.weathercode, CWeatherData!.is_day)[1]}`}>天気</p>
                   </div>
+                </div>
+                <div className='w-graph-div'>
+                  <div className='flex justify-between'> 
+                    <div className='weather-graph-legend-div'>
+                      <p><span className='legend-box bg-red-500'>&nbsp;</span> temperature</p>
+                      <p><span className='legend-box bg-blue-500'>&nbsp;</span> precipitation</p>
+                      <p><span className='legend-box bg-gray-500'>&nbsp;</span> wind speed</p>
+                    </div>
+                    <p className='w-graph-date'>{GraphDate}</p>
+                  </div>
+                  <div className='weather-graph-div'> 
+                    <WeatherGraph data={HWeatherData!} />
+                  </div>
+                </div>
+                <div className='d-weather-div'> 
                   <div className='d-weather-card'>
                     {[...Array(7).keys()].map((val) => {
                       const date = (DWeatherData!['time'][val]).toString().replace(/-/g,'/');

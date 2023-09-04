@@ -6,6 +6,7 @@ export default {
   ],
   theme: {
     extend: {
+      screens: {'xs': '390px'},
       'animation': {
         'gradient-x':'gradient-x 30s ease infinite',
         'gradient-y':'gradient-y 30s ease infinite',

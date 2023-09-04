@@ -1,5 +1,5 @@
 .home-main {
-  @apply -z-10 animate-gradient-xy bg-gradient-to-r w-full;
+  @apply animate-gradient-xy bg-gradient-to-r h-[100vh];
 }
 
 .search-link {
@@ -18,8 +18,12 @@
   @apply text-base font-bold title-common;
 }
 
+.weather-card {
+  @apply z-10 p-6 m-auto flex flex-col;
+}
+
 .weather-div {
-  @apply flex m-auto font-mono;
+  @apply m-auto font-mono h-full space-y-7;
 }
 
 .card-commons {
@@ -58,16 +62,20 @@
   @apply px-1 rounded-full;
 }
 
+.d-weather-div {
+  @apply h-[70vh] xs:h-[79.5vh] sm:h-[58vh] md:h-[28vh] pb-3 w-full overflow-y-auto;
+}
+
 .d-weather-card {
-  @apply grid grid-flow-row grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 w-fit justify-items-center gap-8;
+  @apply grid grid-flow-row grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 w-full justify-items-center gap-8;
 }
 
 .d-div {
-  @apply flex flex-col space-y-5 p-4 card-commons bg-white bg-opacity-10;
+  @apply m-auto flex flex-col space-y-4 p-4 card-commons bg-white bg-opacity-10;
 }
 
 .d-img-div {
-  @apply px-4 card-commons bg-white bg-opacity-40 hover:bg-opacity-50 active:bg-opacity-10;
+  @apply px-4 card-commons bg-white bg-opacity-40 hover:bg-opacity-60  active:bg-neutral-600;
 }
 
 .d-data-div {
