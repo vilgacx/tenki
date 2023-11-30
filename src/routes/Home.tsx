@@ -99,16 +99,17 @@ function Home() {
           setDWeatherData(daily_weather_data);
           setHWeatherData(hourly_weather_data);
           setCWeatherIcon(WeatherIcons[current_weather_data.weathercode][current_weather_data.is_day]["image"]);
-          setShow(true);
+          setShow(true)
         })
     }
   },[Day]);
 
   return (
-    <>
-      {!Show && <Loading />}
-      {Show &&
-        <> 
+    <>  
+      {(Show  === false) ?
+        <Loading />
+        :
+        <>
           <main className={`home-main ${Weathers(CWeatherData!.weathercode, CWeatherData!.is_day)[0]}`}>
             <BgCanvas type={CWeatherData!.weathercode} is_day={CWeatherData!.is_day} />
             <Link to="/search" className='search-link'>🔍</Link>

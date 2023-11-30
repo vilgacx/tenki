@@ -17,7 +17,7 @@ function Search() {
 
   useEffect(() => {
     let CityList: Array<City>;
-    fetch("https://api.github.com/repos/xorvet/everycity/git/blobs/c4cf26edf51ed836fb2d2115b5a63c399580c29c")
+    fetch("https://api.github.com/repos/vilgacx/everycity/git/blobs/c4cf26edf51ed836fb2d2115b5a63c399580c29c")
       .then((response) => response.json())
       .then((data) => {
         CityList = JSON.parse(atob(data['content']));
