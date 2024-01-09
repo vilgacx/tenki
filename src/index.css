@@ -9,3 +9,13 @@ body {
 main {
   @apply w-full flex flex-col text-center;
 }
+
+*::-webkit-scrollbar {
+  width: 3.5px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #a1a1aa;
+  border-radius: 180px;
+  opacity: 0.1;
+}

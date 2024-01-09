@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@700;900&display=swap');
+
 .home-main {
   @apply animate-gradient-xy bg-gradient-to-r h-[100vh];
 }
@@ -11,7 +13,8 @@
 }
 
 .title {
-  @apply font-serif font-bold hidden md:block md:text-8xl title-common;
+  @apply hidden font-bold md:block md:text-8xl title-common;
+  font-family: 'Noto Serif JP', serif;
 }
 
 .sub-title {
