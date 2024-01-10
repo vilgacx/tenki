@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@700;900&display=swap');
 
 .home-main {
-  @apply animate-gradient-xy bg-gradient-to-r h-[100vh];
+  @apply animate-gradient-xy bg-gradient-to-r min-h-screen h-full;
 }
 
 .search-link {
@@ -66,7 +66,7 @@
 }
 
 .d-weather-div {
-  @apply h-[70vh] xs:h-[79.5vh] sm:h-[58vh] md:h-[28vh] pb-3 w-full overflow-y-auto;
+  @apply h-[70vh] xs:h-[79.5vh] sm:h-[58vh] md:h-[28.5vh] pb-3 w-full overflow-y-auto;
 }
 
 .d-weather-card {

@@ -106,62 +106,60 @@ function Home() {
 
   return (
     <>  
-      {(Show  === false) ?
+      {!Show ?
         <Loading />
         :
-        <>
-          <main className={`home-main ${Weathers(CWeatherData!.weathercode, CWeatherData!.is_day)[0]}`}>
-            <BgCanvas type={CWeatherData!.weathercode} is_day={CWeatherData!.is_day} />
-            <Link to="/search" className='search-link'>🔍</Link>
-            <main className="weather-card"> 
-              <div className={`weather-div ${Weathers(CWeatherData!.weathercode, CWeatherData!.is_day)[2]}`}>
-                <div className='flex justify-between'>
-                  <div className="c-weather-card">
-                    <img src={CWeatherIcon} alt="weather-logo" className="c-weather-logo"/>
-                    <p className='c-temp'>{CWeatherData!['temperature']}&deg;C 
-                      <p className='text-xs'>current temprature</p>
-                    </p>
-                  </div>
-                  <div>
-                    <p className={`title ${Weathers(CWeatherData!.weathercode, CWeatherData!.is_day)[1]}`}>天気</p>
-                  </div>
+        <main className={`home-main ${Weathers(CWeatherData!.weathercode, CWeatherData!.is_day)[0]}`}>
+          <BgCanvas type={CWeatherData!.weathercode} is_day={CWeatherData!.is_day} />
+          <Link to="/search" className='search-link'>🔍</Link>
+          <main className="weather-card"> 
+            <div className={`weather-div ${Weathers(CWeatherData!.weathercode, CWeatherData!.is_day)[2]}`}>
+              <div className='flex justify-between'>
+                <div className="c-weather-card">
+                  <img src={CWeatherIcon} alt="weather-logo" className="c-weather-logo"/>
+                  <p className='c-temp'>{CWeatherData!['temperature']}&deg;C 
+                    <p className='text-xs'>current temprature</p>
+                  </p>
                 </div>
-                <div className='w-graph-div'>
-                  <div className='flex justify-between'> 
-                    <div className='weather-graph-legend-div'>
-                      <p><span className='legend-box bg-red-500'>&nbsp;</span> temperature</p>
-                      <p><span className='legend-box bg-blue-500'>&nbsp;</span> precipitation</p>
-                      <p><span className='legend-box bg-gray-500'>&nbsp;</span> wind speed</p>
-                    </div>
-                    <p className='w-graph-date'>{GraphDate}</p>
-                  </div>
-                  <div className='weather-graph-div'> 
-                    <WeatherGraph data={HWeatherData!} />
-                  </div>
-                </div>
-                <div className='d-weather-div'> 
-                  <div className='d-weather-card'>
-                    {[...Array(7).keys()].map((val) => {
-                      const date = (DWeatherData!['time'][val]).toString().replace(/-/g,'/');
-                      return <div className='d-div' key={val}>
-                        <button className='d-img-div' onClick={() => {setDay(val); setGraphDate(date)}}>
-                          <img src={WeatherIcons[DWeatherData!['weathercode'][val]][0]['image']} alt="weather-logo" className='m-auto'/>
-                        </button>
-                        <div className='d-data-div'> 
-                          <p><b>max:</b> {DWeatherData!['temperature_2m_max'][val]}&deg;C</p>
-                          <p><b>min:</b> {DWeatherData!['temperature_2m_min'][val]}&deg;C</p>
-                          <p><b>ppt:</b> {DWeatherData!['precipitation_probability_max'][val]}%</p>
-                          <p><b>wind:</b> {DWeatherData!['windspeed_10m_max'][val]}km/h</p>
-                          <p><b>date:</b> {date}</p>
-                        </div>
-                      </div>
-                    })}
-                  </div>
+                <div>
+                  <p className={`title ${Weathers(CWeatherData!.weathercode, CWeatherData!.is_day)[1]}`}>天気</p>
                 </div>
               </div>
-            </main>
+              <div className='w-graph-div'>
+                <div className='flex justify-between'> 
+                  <div className='weather-graph-legend-div'>
+                    <p><span className='legend-box bg-red-500'>&nbsp;</span> temperature</p>
+                    <p><span className='legend-box bg-blue-500'>&nbsp;</span> precipitation</p>
+                    <p><span className='legend-box bg-gray-500'>&nbsp;</span> wind speed</p>
+                  </div>
+                  <p className='w-graph-date'>{GraphDate}</p>
+                </div>
+                <div className='weather-graph-div'> 
+                  <WeatherGraph data={HWeatherData!} />
+                </div>
+              </div>
+              <div className='d-weather-div'> 
+                <div className='d-weather-card'>
+                  {[...Array(7).keys()].map((val) => {
+                    const date = (DWeatherData!['time'][val]).toString().replace(/-/g,'/');
+                    return <div className='d-div' key={val}>
+                      <button className='d-img-div' onClick={() => {setDay(val); setGraphDate(date)}}>
+                        <img src={WeatherIcons[DWeatherData!['weathercode'][val]][0]['image']} alt="weather-logo" className='m-auto'/>
+                      </button>
+                      <div className='d-data-div'> 
+                        <p><b>max:</b> {DWeatherData!['temperature_2m_max'][val]}&deg;C</p>
+                        <p><b>min:</b> {DWeatherData!['temperature_2m_min'][val]}&deg;C</p>
+                        <p><b>ppt:</b> {DWeatherData!['precipitation_probability_max'][val]}%</p>
+                        <p><b>wind:</b> {DWeatherData!['windspeed_10m_max'][val]}km/h</p>
+                        <p><b>date:</b> {date}</p>
+                      </div>
+                    </div>
+                  })}
+                </div>
+              </div>
+            </div>
           </main>
-        </>
+        </main>
       }
     </>
   )

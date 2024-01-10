@@ -3,7 +3,7 @@
 }
 
 .search-div {
-  @apply z-10 m-auto flex flex-col space-y-4 mt-32;
+  @apply m-auto flex flex-col space-y-4 mt-16 pt-2;
 }
 
 .search-title {
