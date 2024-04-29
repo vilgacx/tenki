@@ -1,10 +1,12 @@
-import './css/home.css';
+'use client'
+
+import './assets/home.css';
 import { useEffect, useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import BgCanvas from '../components/BgCanvas';
-import Loading from '../components/Loading';
-import WeatherIcons from '../assets/WeatherIcons';
-import WeatherGraph from '../components/WeatherGraph.tsx';
+import BgCanvas from './components/BgCanvas';
+import Loading from './components/Loading';
+import WeatherIcons from './assets/WeatherIcons';
+import WeatherGraph from './components/WeatherGraph';
+import Link from 'next/link';
 
 const stylelist: {[key: number]: Array<Array<string>>} = {
   0 : [
@@ -68,12 +70,11 @@ function Home() {
   const cdate = new Date();
   const [GraphDate, setGraphDate] = useState(`${cdate.getFullYear()}/${("0"+cdate.getMonth()).slice(-2)}/${("0"+cdate.getDate()).slice(-2)}`);
 
-  const navigate = useNavigate();
-  const selected_city = localStorage.getItem('city');
 
   useEffect(() => {
+    const selected_city = localStorage.getItem('city');
     if (selected_city === null) {
-      navigate("/search");
+      window.location.pathname = "/search";
     } else {
       const city = JSON.parse(selected_city);
       fetch(`https://api.open-meteo.com/v1/forecast?latitude=${city.lat}&longitude=${city.long}&hourly=temperature_2m,precipitation_probability,windspeed_10m,is_day&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max,windspeed_10m_max&current_weather=true&timezone=auto`)
@@ -84,7 +85,7 @@ function Home() {
           const hourly_weather_data = () => {
             const rawhdata = data.hourly;
             const hdata: HourlyData[] = [];
-            [...Array(24).keys()].map((val) => {
+              Array.from({length: 24}).map((_i,val) => {
               val = val+(24*Day)
               hdata.push({
                 "time": (rawhdata['time'][val]).split('T')[1].split(':')[0],
@@ -99,7 +100,7 @@ function Home() {
           setDWeatherData(daily_weather_data);
           setHWeatherData(hourly_weather_data);
           setCWeatherIcon(WeatherIcons[current_weather_data.weathercode][current_weather_data.is_day]["image"]);
-          setShow(true)
+          setShow(true);
         })
     }
   },[Day]);
@@ -111,7 +112,7 @@ function Home() {
         :
         <main className={`home-main ${Weathers(CWeatherData!.weathercode, CWeatherData!.is_day)[0]}`}>
           <BgCanvas type={CWeatherData!.weathercode} is_day={CWeatherData!.is_day} />
-          <Link to="/search" className='search-link'>🔍</Link>
+          <Link href="/search" className='search-link'>🔍</Link>
           <main className="weather-card"> 
             <div className={`weather-div ${Weathers(CWeatherData!.weathercode, CWeatherData!.is_day)[2]}`}>
               <div className='flex justify-between'>
@@ -140,7 +141,7 @@ function Home() {
               </div>
               <div className='d-weather-div'> 
                 <div className='d-weather-card'>
-                  {[...Array(7).keys()].map((val) => {
+                  {Array.from({length: 7}).map((_i,val) => {
                     const date = (DWeatherData!['time'][val]).toString().replace(/-/g,'/');
                     return <div className='d-div' key={val}>
                       <button className='d-img-div' onClick={() => {setDay(val); setGraphDate(date)}}>

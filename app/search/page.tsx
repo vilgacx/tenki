@@ -1,6 +1,7 @@
-import './css/search.css';
+'use client'
+
+import '../assets/search.css';
 import { useEffect, useRef, useState } from 'react';
-import { useNavigate } from "react-router-dom";
 
 type City = {
   id: string
@@ -11,7 +12,6 @@ type City = {
 
 function Search() {
   const inn = useRef<HTMLInputElement>(null);
-  const navigate = useNavigate();
   const [Cities, setCities] = useState<City[]>([]);
   const [Show, setShow] = useState<Boolean>(false);
 
@@ -54,7 +54,7 @@ function Search() {
 
   function Enter(city: City) {
     localStorage.setItem("city",JSON.stringify(city));
-    navigate("/");
+    window.location.pathname = "/";
   }
 
   return (
