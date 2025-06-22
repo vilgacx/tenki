@@ -1,6 +1,6 @@
 # tenki
 
-*perfect weather app*
+*perfect weather site*
 
 - stack - next.js, tailwindcss, recharts
 - weather api - [open-meteo.com](https://open-meteo.com)
