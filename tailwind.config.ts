@@ -1,6 +1,6 @@
 import type { Config } from "tailwindcss";
 
-const config: Config = {
+export default {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -8,40 +8,43 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      screens: {'xs': '390px'},
+      fontFamily: {
+        "title": "var(--font-title)"
+      },
+      screens: { 'xs': '390px' },
       'animation': {
-        'gradient-x':'gradient-x 30s ease infinite',
-        'gradient-y':'gradient-y 30s ease infinite',
-        'gradient-xy':'gradient-xy 30s ease infinite',
+        'gradient-x': 'gradient-x 30s ease infinite',
+        'gradient-y': 'gradient-y 30s ease infinite',
+        'gradient-xy': 'gradient-xy 30s ease infinite',
       },
       'keyframes': {
         'gradient-y': {
           '0%, 100%': {
-            'background-size':'400% 400%',
+            'background-size': '400% 400%',
             'background-position': 'center top'
           },
           '50%': {
-            'background-size':'200% 200%',
+            'background-size': '200% 200%',
             'background-position': 'center center'
           }
         },
         'gradient-x': {
           '0%, 100%': {
-            'background-size':'200% 200%',
+            'background-size': '200% 200%',
             'background-position': 'left center'
           },
           '50%': {
-            'background-size':'200% 200%',
+            'background-size': '200% 200%',
             'background-position': 'right center'
           }
         },
         'gradient-xy': {
           '0%, 100%': {
-            'background-size':'400% 400%',
+            'background-size': '400% 400%',
             'background-position': 'left center'
           },
           '50%': {
-            'background-size':'200% 200%',
+            'background-size': '200% 200%',
             'background-position': 'right center'
           }
         }
@@ -49,5 +52,4 @@ const config: Config = {
     }
   },
   plugins: [],
-};
-export default config;
+} satisfies Config;

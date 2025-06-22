@@ -1,5 +1,12 @@
-import './global.css';
 import type { Metadata } from "next";
+import { Noto_Serif_JP } from "next/font/google";
+import "./globals.css";
+
+const NotoSerif = Noto_Serif_JP({
+  variable: "--font-title",
+  subsets: ["latin"],
+  weight: ["700", "900"],
+});
 
 export const metadata: Metadata = {
   title: "tenki",
@@ -13,7 +20,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body
+        className={`${NotoSerif.variable} antialiased`}
+      >
+        {children}
+      </body>
     </html>
   );
 }

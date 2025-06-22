@@ -1,0 +1,11 @@
+.title-common {
+  @apply bg-clip-text text-transparent animate-gradient-x bg-gradient-to-r;
+}
+
+.sub-title {
+  @apply text-base font-bold title-common;
+}
+
+.card-commons {
+  @apply rounded-xl shadow-md;
+}

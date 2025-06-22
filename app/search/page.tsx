@@ -1,7 +1,5 @@
-'use client'
-
-import '../assets/search.css';
-import { useEffect, useRef, useState } from 'react';
+"use client"
+import { ChangeEvent, useState } from 'react';
 
 type City = {
   id: string
@@ -11,64 +9,59 @@ type City = {
 }
 
 function Search() {
-  const inn = useRef<HTMLInputElement>(null);
   const [Cities, setCities] = useState<City[]>([]);
   const [Show, setShow] = useState<Boolean>(false);
 
-  useEffect(() => {
-    let CityList: Array<City>;
-    fetch("https://api.github.com/repos/vilgacx/everycity/git/blobs/c4cf26edf51ed836fb2d2115b5a63c399580c29c")
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+
+    fetch(`/api/search?q=${encodeURIComponent(value)}`)
       .then((response) => response.json())
-      .then((data) => {
-        CityList = JSON.parse(atob(data['content']));
-        setCities(CityList);
+      .then((res) => {
+        setCities(res.data);
+        setShow(res.length > 0);
       })
       .catch((_e) => {
-        alert("Error :( ");
+        setCities([]);
+        setShow(false);
       });
+  }
 
-    if (inn.current !== null) {
-      const city_search = inn.current;
-      city_search.oninput = () => {
-        if (city_search.value !== "") {
-          const NewCityList: City[] = [];
-          setShow(true);
-          CityList.map((val,index) => {
-            if (((val.name).toLowerCase()).startsWith((city_search.value).toLowerCase()) === true) {
-              NewCityList.push(CityList[index]);
-            }
-          });
-          if (NewCityList.length !== 0) {
-            setCities(NewCityList);
-          } else {
-            setCities([]);
-            setShow(false);
-          }
-        } else {
-          setCities([]);
-          setShow(false);
-        }
-      }
-    }
-  },[]);  
-
-  function Enter(city: City) {
-    localStorage.setItem("city",JSON.stringify(city));
+  const select = (city: City) => {
+    localStorage.setItem("city", JSON.stringify(city));
     window.location.pathname = "/";
   }
 
   return (
-    <main className="search-main">
-      <div className="search-div">
-        <p className="search-title">enter city name</p>
-        <span className="search-inn-div"> 
-          <input type="text" className="search-inn" ref={inn}/>
-          <button className="search-btn">↩</button> 
+    <main className="h-screen p-4 text-neutral-800 bg-gray-50 font-serif">
+      <div className="h-full w-full m-auto flex flex-col space-y-4 mt-16">
+        <p className="text-4xl italic mb-6">
+          enter city name
+        </p>
+        <span className="m-auto flex rounded-3xl bg-white border focus:border-black w-full md:w-[50vh]">
+          <input
+            type="text"
+            className="text-2xl px-6 py-4 rounded-l-3xl focus:outline-none w-full"
+            onChange={handleChange}
+          />
+          <button className="font-bold text-4xl hover:bg-zinc-50 px-6 rounded-r-3xl h-full active:bg-zinc-100">
+            ↩
+          </button>
         </span>
         {Show &&
-          <span className="city-list-div">
-            <ul className="city-list">
-              {Cities!.map((city: City) => { return <li key={city.id}><button className="li-btn" onClick={() => Enter(city)}>{city.name}</button></li> })}
+          <span className="m-auto bg-white p-2.5 border rounded-3xl w-full md:w-[50vh]">
+            <ul className="bg-white w-full rounded-3xl text-left divide-y text-2xl italic max-h-96 overflow-auto">
+              {
+                Cities!.map((city: City) =>
+                  <li
+                    key={city.id}
+                    className="cursor-pointer text-center rounded-2xl text-ellipsis p-8"
+                    onClick={() => select(city)}
+                  >
+                    {city.name}
+                  </li>
+                )
+              }
             </ul>
           </span>
         }
